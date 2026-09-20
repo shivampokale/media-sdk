@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media SDK Documentation</title>
+  </head>
+
+  <body>
+    <main>
+      <h1>Media SDK Documentation</h1>
+
+      <p>
+        Framework-agnostic TypeScript SDK for accessing Pexels photos
+        and videos.
+      </p>
+
+      <h2>Core Features</h2>
+
+      <ul>
+        <li>Photo search</li>
+        <li>Video search</li>
+        <li>Curated photos</li>
+        <li>Pagination</li>
+        <li>Single photo and video fetch</li>
+        <li>View and download events</li>
+        <li>Error handling</li>
+        <li>In-memory caching</li>
+      </ul>
+
+      <h2>Create a Client</h2>
+
+      <pre><code>import { MediaClient } from "@media-sdk/media-core";
+
+const client = new MediaClient({
+  apiKey: "YOUR_PEXELS_API_KEY",
+});</code></pre>
+
+      <h2>Search Photos</h2>
+
+      <pre><code>const result = await client.search({
+  query: "nature",
+  page: 1,
+  perPage: 20,
+});</code></pre>
+
+      <h2>Search Videos</h2>
+
+      <pre><code>const result = await client.searchVideos({
+  query: "nature",
+  page: 1,
+  perPage: 20,
+});</code></pre>
+
+      <h2>Curated Photos</h2>
+
+      <pre><code>const result = await client.getCurated({
+  page: 1,
+  perPage: 20,
+});</code></pre>
+
+      <h2>Single Item</h2>
+
+      <pre><code>const photo = await client.getById(123);
+const video = await client.getVideoById(123);</code></pre>
+
+      <h2>Events</h2>
+
+      <pre><code>const unsubscribe = client.subscribe((event) => {
+  console.log(event);
+});
+
+client.emitView(mediaId);
+client.emitDownload(mediaId);
+
+unsubscribe();</code></pre>
+
+      <h2>Dependency Direction</h2>
+
+      <pre><code>Application -> Platform Wrapper -> media-core</code></pre>
+
+      <p>
+        React applications use @media-sdk/media-react and React Native
+        applications use @media-sdk/media-native.
+      </p>
+    </main>
+  </body>
+</html>

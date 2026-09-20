@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Media Component Library Documentation</title>
+  </head>
+
+  <body>
+    <main>
+      <h1>Media Component Library Documentation</h1>
+
+      <p>
+        Headless UI behavior libraries for React and React Native.
+        Applications provide their own markup and styling.
+      </p>
+
+      <h2>React Package</h2>
+
+      <pre><code>@media-sdk/media-ui-react</code></pre>
+
+      <h2>Media Grid</h2>
+
+      <p>
+        useMediaGrid provides infinite-scroll and load-more behavior.
+      </p>
+
+      <pre><code>const { getLoadMoreProps } = useMediaGrid({
+  hasMore,
+  loading,
+  onLoadMore: loadMore,
+});</code></pre>
+
+      <pre><code>&lt;div {...getLoadMoreProps()}&gt;
+  Load more...
+&lt;/div&gt;</code></pre>
+
+      <h2>Lightbox</h2>
+
+      <p>
+        useLightbox manages the active item, opening, closing,
+        navigation, keyboard controls, and focus handling.
+      </p>
+
+      <pre><code>const {
+  isOpen,
+  activeItem,
+  activeIndex,
+  open,
+  close,
+  next,
+  previous,
+  getDialogProps,
+} = useLightbox({
+  items,
+});</code></pre>
+
+      <p>
+        Keyboard support includes Escape, Arrow Left, and Arrow Right.
+      </p>
+
+      <h2>Reel Swiper</h2>
+
+      <p>
+        useReelSwiper provides Reel-style paging and active-item
+        detection.
+      </p>
+
+      <pre><code>const {
+  activeIndex,
+  getContainerProps,
+  getItemProps,
+} = useReelSwiper();</code></pre>
+
+      <pre><code>&lt;div {...getContainerProps()}&gt;
+  {videos.map((video, index) =&gt; (
+    &lt;div
+      key={video.id}
+      {...getItemProps(index)}
+    &gt;
+      &lt;video
+        src={video.mediaUrl}
+        controls
+      /&gt;
+    &lt;/div&gt;
+  ))}
+&lt;/div&gt;</code></pre>
+
+      <h2>React Native Package</h2>
+
+      <pre><code>@media-sdk/media-ui-native</code></pre>
+
+      <p>
+        The React Native package provides headless Grid, Lightbox,
+        Reel paging, and active-item behavior.
+      </p>
+
+      <h2>Architecture Rules</h2>
+
+      <ul>
+        <li>UI libraries do not fetch Pexels data.</li>
+        <li>UI libraries do not import media-core.</li>
+        <li>UI libraries do not import platform SDK wrappers.</li>
+        <li>Consumers provide markup and styling.</li>
+      </ul>
+
+      <h2>Dependency Direction</h2>
+
+      <pre><code>Web App -> media-ui-react
+
+React Native App -> media-ui-native</code></pre>
+    </main>
+  </body>
+</html>
